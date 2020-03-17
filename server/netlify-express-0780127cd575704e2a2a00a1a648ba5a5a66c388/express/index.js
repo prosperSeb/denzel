@@ -73,8 +73,9 @@ router.post('/movies/:id',async(request,response)=>{
   response.send(resultat);
 
 });
+router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 
 
-app.use('/.netlify/functions/index.js', router);
+app.use('/.netlify/functions/index', router);
 module.exports = app;
 module.exports.handler = serverless(app);
