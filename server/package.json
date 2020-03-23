@@ -1,7 +1,11 @@
 {
   "name": "denzel",
   "version": "0.0.1",
+  "main": "index.js",
   "description": "The must-watch Denzel's movies",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
@@ -9,9 +13,11 @@
     "express": "^4.17.1",
     "helmet": "^3.21.3",
     "mongodb": "^3.5.4",
+    "now": "^17.0.4",
     "p-limit": "^2.2.2",
     "p-settle": "^4.0.0"
   },
+  
   "devDependencies": {
     "nodemon": "^2.0.2"
   }

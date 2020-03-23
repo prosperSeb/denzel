@@ -1,0 +1,26 @@
+{
+    "version": 2,
+    "builds": [{ "src": "index.js", "use": "@now/node-server" }],
+    "routes": [
+        {
+          "src": "/movies/:search?",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
+          "src": "/movies/:id",
+          "dest": "/index.js",
+          "methods": ["GET"]
+        },
+        {
+            "src": "/movies/populate/:id",
+            "dest": "/index.js",
+            "methods": ["GET"]
+        },
+        {
+            "src": "/movies/:id",
+            "dest": "/index.js",
+            "methods": ["POST"]
+        }
+    ]
+}
