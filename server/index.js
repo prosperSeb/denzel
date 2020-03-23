@@ -1,14 +1,11 @@
-'use strict';
-
 const cors = require('cors');
 const express = require('express');
 const helmet = require('helmet');
 const {PORT} = require('./constants');
 const mongodb = require('./app');
-const serverless = require('serverless-http');
 
 const app = express();
-const router = express.Router();
+
 module.exports = app;
 
 app.use(require('body-parser').json());
@@ -17,7 +14,7 @@ app.use(helmet());
 
 app.options('*', cors());
 
-router.get('/movies/:search?', async(request, response) => {
+app.get('/movies/:search?', async(request, response) => {
   const param = request.params;
   //response.send(limit==null );
 
@@ -54,19 +51,19 @@ router.get('/movies/:search?', async(request, response) => {
   
 });
 
-router.get('/movies/:id', async(request, response) => {
+app.get('/movies/:id', async(request, response) => {
   const res = request.params.id;
   const result = await mongodb.getmovie_id(res);
   response.send(result);
 });
 
-router.get('/movies/populate/:id', async(request, response) => {
+app.get('/movies/populate/:id', async(request, response) => {
   const res = request.params.id;
   const result = await mongodb.insert(res);
   response.send(result);
 });
 
-router.post('/movies/:id',async(request,response)=>{
+app.post('/movies/:id',async(request,response)=>{
   const res = request.body;
   const id = request.params.id;
   const resultat = await mongodb.addreview(id,res);
@@ -75,6 +72,7 @@ router.post('/movies/:id',async(request,response)=>{
 });
 
 
-app.use('/.netlify/functions/index.js', router);
-module.exports = app;
-module.exports.handler = serverless(app);
+
+app.listen(PORT);
+console.log(`📡 Running on port ${PORT}`);
+//mongodb+srv://lepler:<Yoda$007>@movies-qv7cr.mongodb.net/test?retryWrites=true&w=majority
