@@ -39,11 +39,11 @@ app.get('/movies/:search?', async(request, response) => {
     response.send(movies);
   }else if(param.search=="search" && limit!=null&& metascore!=null)
   {
-    const movies = await mongodb.getmovie_list(limit,metascore);
+    const movies = await mongodb.getmovie_list(limit,parseInt(metascore));
     response.send(movies);
   }else if(param.search=="search" && limit==null&& metascore!=null)
   {
-    const movies = await mongodb.getmovie_list(5,metascore);
+    const movies = await mongodb.getmovie_list(5,parseInt(metascore));
     response.send(movies);
   }else{
     response.send("error in the url")
